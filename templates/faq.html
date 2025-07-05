@@ -1,0 +1,242 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - My Company</title>
+    <link href="{%  static  'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,.05);
+        }
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #007bff !important;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: #555 !important;
+            transition: color 0.3s ease;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        /* Page specific styles */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1500x400/27ae60/ffffff?text=Got+Questions%3F') no-repeat center center; /* Replace with your image */
+            background-size: cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            overflow: hidden;
+        }
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .section-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        .accordion-item {
+            border: 1px solid #dee2e6; /* Light border for each item */
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+            box-shadow: 0 2px 5px rgba(0,0,0,.05); /* Subtle shadow */
+            transition: box-shadow 0.3s ease;
+        }
+        .accordion-item:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,.1);
+        }
+        .accordion-button {
+            background-color: white;
+            color: #343a40;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px; /* For top button */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #007bff; /* Blue when open */
+            color: white;
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Blue focus ring */
+            border-color: #007bff;
+        }
+        .accordion-body {
+            padding: 1.5rem;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #adb5bd;
+            padding: 2.5rem 0;
+            text-align: center;
+            margin-top: 5rem;
+            font-size: 0.9rem;
+        }
+        .footer p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+      <div class="container">
+        <a class="navbar-brand" href="/">Lethal Company</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home'%}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about'%}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'faq'%}">FAQ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p class="lead">Find answers to common questions about our services and policies.</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <section class="mb-5">
+            <h2 class="section-heading text-center">General Questions</h2>
+            <div class="accordion" id="generalFaqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What services does My Company offer?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#generalFaqAccordion">
+                        <div class="accordion-body">
+                            My Company specializes in providing [mention your primary services, e.g., web development, digital marketing, consulting, product sales]. We offer tailored solutions designed to meet the unique needs of our clients. For a detailed list, please visit our <a href="/services">Services page</a>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            How can I get started with your services?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#generalFaqAccordion">
+                        <div class="accordion-body">
+                            Getting started is easy! Simply fill out the contact form on our <a href="/contact">Contact Us page</a>, or call us directly at [Your Phone Number]. Our team will get back to you within 24 hours to discuss your needs.
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        What is your pricing model?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#generalFaqAccordion">
+                    <div class="accordion-body">
+                        Our pricing varies depending on the scope and complexity of the project. We offer customized quotes after an initial consultation to ensure our services align perfectly with your budget and requirements. Please <a href="/contact">contact us</a> for a detailed estimate.
+                    </div>
+                </div>
+
+                </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section class="mb-5">
+            <h2 class="section-heading text-center">Technical Questions</h2>
+            <div class="accordion" id="technicalFaqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTechOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTechOne" aria-expanded="false" aria-controls="collapseTechOne">
+                            Do you provide ongoing support after project completion?
+                        </button>
+                    </h2>
+                    <div id="collapseTechOne" class="accordion-collapse collapse" aria-labelledby="headingTechOne" data-bs-parent="#technicalFaqAccordion">
+                        <div class="accordion-body">
+                            Yes, we offer various support packages designed to ensure the continued smooth operation of your project. This can include maintenance, updates, and troubleshooting. Details can be discussed during project finalization.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTechTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTechTwo" aria-expanded="false" aria-controls="collapseTechTwo">
+                            What technologies do you specialize in?
+                        </button>
+                    </h2>
+                    <div id="collapseTechTwo" class="accordion-collapse collapse" aria-labelledby="headingTechTwo" data-bs-parent="#technicalFaqAccordion">
+                        <div class="accordion-body">
+                            Our team is proficient in a wide range of modern technologies, including [list key technologies, e.g., Python, Flask, Django, React, Vue.js, AWS, Docker]. We continuously update our skills to leverage the best tools for your project.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center py-4">
+            <p class="lead">Still have questions? Feel free to <a href="/contact">contact us directly</a>!</p>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 My Company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
