@@ -1,87 +1,62 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Professional Homepage</title>
-    <link href="{%  static  'css/bootstrap.min.css'%}" rel="stylesheet">
+    <title>Only For Zia</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter, Montserrat, Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif; /* Using Inter as the primary font */
             color: #333; /* Softer default text color */
-            background-color: #f8f9fa; /* Light grey background for the whole page */
+            background-color: #e6f0e6; /* Changed to sage green */
         }
-        .navbar {
+        /* Custom Navbar Styling */
+        .navbar-custom {
+            background-color: #ffedcc; /* Light orange background for the navbar */
             box-shadow: 0 2px 4px rgba(0,0,0,.05); /* Subtle shadow for depth */
+            position: relative; /* Needed for absolute positioning of brand */
         }
-        .navbar-brand {
+        .navbar-custom .navbar-brand {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            color: #007bff !important; /* Brand color */
+            color: #ff8c00 !important; /* Darker orange for brand text */
+            font-size: 1.8rem; /* Larger brand text */
+            position: absolute; /* Position absolutely to center */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100; /* Ensure brand is above other elements */
+            white-space: nowrap; /* Prevent wrapping on smaller screens */
         }
-        .nav-link {
+        .navbar-custom .nav-link {
             font-weight: 600;
             color: #555 !important; /* Slightly darker link color */
             transition: color 0.3s ease;
         }
-        .nav-link.active, .nav-link:hover {
-            color: #007bff !important; /* Highlight color for active/hover */
+        .navbar-custom .nav-link.active, .navbar-custom .nav-link:hover {
+            color: #ff8c00 !important; /* Highlight color for active/hover */
+        }
+        /* Adjust toggler for small screens */
+        .navbar-custom .navbar-toggler {
+            margin-left: 1rem; /* Push toggler slightly from left edge */
+            z-index: 101; /* Ensure toggler is clickable */
+        }
+        /* Adjust brand positioning on smaller screens if needed */
+        @media (max-width: 991.98px) { /* Bootstrap's lg breakpoint */
+            .navbar-custom .navbar-brand {
+                position: static; /* Reset positioning for smaller screens */
+                transform: none;
+                margin-left: auto; /* Center with flexbox if needed */
+                margin-right: auto;
+            }
+            .navbar-custom .navbar-collapse {
+                text-align: center; /* Center nav links in collapsed state */
+            }
         }
 
-        .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://via.placeholder.com/1500x800/1a1a1a/ffffff?text=Professional+Background') no-repeat center center;
-            background-size: cover;
-            color: white;
-            height: 80vh; /* A bit taller for more impact */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin-bottom: 4rem; /* More space before next section */
-            border-bottom-left-radius: 10px; /* Slight rounded corners for style */
-            border-bottom-right-radius: 10px;
-            overflow: hidden; /* Ensures content doesn't spill out */
-        }
-        .hero-section h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4rem; /* Larger, more impactful heading */
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Subtle text shadow */
-        }
-        .hero-section p.lead {
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.5rem; /* Larger lead paragraph */
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            font-weight: 600;
-            padding: 0.8rem 2rem;
-            border-radius: 50px; /* Pill-shaped buttons */
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-        .btn-outline-light {
-            font-weight: 600;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .btn-outline-light:hover {
-            background-color: white;
-            color: #007bff !important;
-            border-color: white;
-        }
 
         .section-heading {
             font-family: 'Montserrat', sans-serif;
@@ -137,74 +112,287 @@
         .footer p {
             margin-bottom: 0;
         }
+
+        /* Countdown specific styles */
+        .countdown-container {
+            background-color: #ffedcc; /* Light orange background */
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .countdown-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff8c00; /* Darker orange */
+            margin-bottom: 0.5rem; /* Reduced margin to bring subtitle closer */
+        }
+        .countdown-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem; /* Smaller font size for the subtitle */
+            color: #6c757d; /* Slightly muted color for subtitle */
+            margin-bottom: 1.5rem; /* Space below subtitle before countdown grid */
+        }
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        .countdown-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem 1rem;
+            min-width: 120px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .countdown-value {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ff8c00;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .countdown-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cat-icon { /* Changed from heart-icon to cat-icon */
+            font-size: 2rem;
+            margin-top: 1rem;
+            /* You can add a specific color for the cat emoji if desired, e.g., color: #6a0dad; */
+        }
+
+        /* Profile image and name section styling */
+        .profile-section {
+            display: flex;
+            flex-direction: column; /* Stack image and text on small screens */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+        .profile-image-container {
+            width: 150px; /* Set a fixed size for the container */
+            height: 150px;
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden; /* Hide parts of the image outside the circle */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            margin-bottom: 1.5rem; /* Space between image and name on stacked layout */
+        }
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the container without distortion */
+            display: block; /* Remove extra space below image */
+        }
+        .profile-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 0; /* Remove default heading margin */
+        }
+        .profile-subtext { /* New style for the subtext */
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem; /* Adjust size as needed */
+            color: #6c757d; /* Muted color */
+            margin-top: 0.5rem; /* Space between name and subtext */
+        }
+
+        @media (min-width: 768px) { /* On medium screens and up, arrange side-by-side */
+            .profile-section {
+                flex-direction: row; /* Arrange image and text in a row */
+                gap: 2rem; /* Space between image and text */
+            }
+            .profile-image-container {
+                margin-bottom: 0; /* Remove bottom margin when in row layout */
+            }
+        }
+
+        /* Responsive adjustments for countdown */
+        @media (max-width: 768px) {
+            .countdown-item {
+                min-width: 100px;
+                padding: 1rem 0.8rem;
+            }
+            .countdown-value {
+                font-size: 2.2rem;
+            }
+            .countdown-label {
+                font-size: 0.8rem;
+            }
+            .countdown-title {
+                font-size: 2rem;
+            }
+            .countdown-subtitle {
+                font-size: 1rem;
+            }
+            .profile-name {
+                font-size: 2.8rem; /* Adjust for smaller screens */
+            }
+            .profile-subtext {
+                font-size: 1.2rem; /* Adjust for smaller screens */
+            }
+        }
+        @media (max-width: 576px) {
+            .countdown-grid {
+                gap: 1rem;
+            }
+            .countdown-item {
+                min-width: 80px;
+                padding: 0.8rem 0.5rem;
+            }
+            .countdown-value {
+                font-size: 1.8rem;
+            }
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3"> <div class="container"> <a class="navbar-brand" href="/">Lethal Company</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about'%}">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'faq'%}">FAQ</a>
-            </li>
-          </ul>
+    <nav class="navbar navbar-expand-lg py-3 navbar-custom">
+        <div class="container">
+            <!-- Toggler for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links (left aligned) -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about'%}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'faq'%}">Gifts</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- Centered Brand -->
+            <a class="navbar-brand" href="#">Only For Zia</a>
         </div>
-      </div>
     </nav>
 
-    <header class="hero-section">
-        <div class="container">
-            <h1>Welcome to Our **Professional Service**</h1>
-            <p class="lead">We provide top-notch solutions for your every need. Explore our services.</p>
-            <div>
-                <a href="/about" class="btn btn-primary btn-lg me-3">Learn More</a>
-                <a href="/contact" class="btn btn-outline-light btn-lg">Contact Us</a>
-            </div>
-        </div>
-    </header>
-
     <main class="container">
-        <section class="text-center my-5 py-5"> <h2 class="section-heading">Our Core Values</h2>
-            <p class="lead text-muted mb-5">Dedicated to excellence, integrity, and customer satisfaction.</p>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <h3>Innovation</h3>
-                        <p>Constantly seeking new and better ways to serve you, ensuring we stay ahead.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <h3>Quality</h3>
-                        <p>Delivering high-standard products and services every time, exceeding expectations.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-box">
-                        <h3>Support</h3>
-                        <p>Providing exceptional, responsive support to all our clients, always here for you.</p>
-                    </div>
-                </div>
+        <!-- Angelika Tibalao Profile Section with Image and Subtext -->
+        <section class="profile-section">
+            <div class="profile-image-container">
+                <img src="https://media.discordapp.net/attachments/1118514819709018133/1394319965259174041/Screenshot_20230201_101207.jpg?ex=68766128&is=68750fa8&hm=30addb2b3cc51d8d8ff64ee2a1d9af7b281b927ad86d633eaa74dd5182780a85&=&format=webp" alt="Angelika Tibalao Profile" class="profile-image">
+            </div>
+            <div>
+                <h1 class="profile-name">Angelika Tibalao</h1>
+                <p class="profile-subtext">the best cousin/apo ever</p> <!-- Added subtext -->
             </div>
         </section>
 
-        </main>
+        <!-- Time Together Countdown Section -->
+        <section class="countdown-container">
+            <h2 class="countdown-title">Time</h2>
+            <p class="countdown-subtitle">since the day we first met</p>
+            <div class="countdown-grid" id="timeTogetherCountdown">
+                <!-- Countdown items will be populated by JavaScript -->
+                <div class="countdown-item">
+                    <div class="countdown-value" id="years">00</div>
+                    <div class="countdown-label">Years</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="months">00</div>
+                    <div class="countdown-label">Months</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            <div class="cat-icon">&#128008;</div> <!-- Cat emoji -->
+        </section>
+
+    </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 My Company. All rights reserved.</p>
+            <p>&copy; 2025 ZiaBonita, All balls reserved.</p>
         </div>
     </footer>
 
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // JavaScript for the "Time Together" countdown
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set your specific start date here: April 29, 2022, 12:30 PM
+            const startDate = new Date('2022-04-29T12:30:00');
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = now.getTime() - startDate.getTime(); // Difference in milliseconds
+
+                // Calculate time components
+                // Using approximate values for months and years for simplicity in display.
+                // For precise calendar-based calculations, a dedicated library would be needed.
+                const seconds = Math.floor(diff / 1000);
+                const minutes = Math.floor(seconds / 60);
+                const hours = Math.floor(minutes / 60);
+                const days = Math.floor(hours / 24);
+
+                const years = Math.floor(days / 365.25); // Approximate years, accounting for leap years
+                const remainingDaysAfterYears = days % 365.25;
+                const months = Math.floor(remainingDaysAfterYears / 30.44); // Approximate months (average days)
+
+                const displayDays = Math.floor(days % 30.44); // Days remaining after months
+                const displayHours = Math.floor(hours % 24);
+                const displayMinutes = Math.floor(minutes % 60);
+                const displaySeconds = Math.floor(seconds % 60);
+
+                // Update the DOM elements, padding with leading zeros if necessary
+                document.getElementById('years').textContent = String(years).padStart(2, '0');
+                document.getElementById('months').textContent = String(months).padStart(2, '0');
+                document.getElementById('days').textContent = String(displayDays).padStart(2, '0');
+                document.getElementById('hours').textContent = String(displayHours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(displayMinutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(displaySeconds).padStart(2, '0');
+            }
+
+            // Update the countdown every second
+            setInterval(updateCountdown, 1000);
+
+            // Initial call to display countdown immediately upon page load
+            updateCountdown();
+        });
+    </script>
 </body>
 </html>

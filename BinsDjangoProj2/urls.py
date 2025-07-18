@@ -24,7 +24,7 @@ from BinsDjangoProj2.views import home
 
 urlpatterns= (
     path('request/', admin.site.urls),
-    path('home/', home, name='home'),
+    path('', home, name='home'),
     path('faq/', faq, name='faq'),
     path('about/', about, name='about'),
 )

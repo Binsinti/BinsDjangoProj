@@ -1,116 +1,83 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - My Company</title>
-    <link href="{%  static  'css/bootstrap.min.css'%}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <title>About - Only For Zia</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter, Montserrat, Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: #333;
-            background-color: #f8f9fa;
+            background-color: #e6f0e6; /* Updated to match the Gifts page's sage green */
         }
-        .navbar {
+        /* Custom Navbar Styling (copied from main page) */
+        .navbar-custom {
+            background-color: #ffedcc;
             box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            position: relative;
         }
-        .navbar-brand {
+        .navbar-custom .navbar-brand {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            color: #007bff !important;
+            color: #ff8c00 !important;
+            font-size: 1.8rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            white-space: nowrap;
         }
-        .nav-link {
+        .navbar-custom .nav-link {
             font-weight: 600;
             color: #555 !important;
             transition: color 0.3s ease;
         }
-        .nav-link.active, .nav-link:hover {
-            color: #007bff !important;
+        .navbar-custom .nav-link.active, .navbar-custom .nav-link:hover {
+            color: #ff8c00 !important;
+        }
+        @media (max-width: 991.98px) {
+            .navbar-custom .navbar-brand {
+                position: static;
+                transform: none;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .navbar-custom .navbar-collapse {
+                text-align: center;
+            }
         }
 
-        /* Page specific styles */
-        .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1500x400/2980b9/ffffff?text=Our+Story') no-repeat center center; /* Replace with your image */
-            background-size: cover;
-            color: white;
-            padding: 5rem 0;
-            text-align: center;
+        /* About Page specific styles */
+        .about-content {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 3rem;
             margin-bottom: 3rem;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            overflow: hidden;
+            text-align: center; /* Center the new heading */
         }
-        .page-header h1 {
+        .about-content h2 { /* Changed from h1 back to h2 */
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .section-heading {
-            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem; /* Reverted font size */
             font-weight: 700;
             color: #343a40;
-            margin-bottom: 2.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        .section-heading::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: #007bff;
-            border-radius: 5px;
-        }
-        .card-custom {
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 2rem;
-            height: 100%; /* Ensures cards in a row have equal height */
-        }
-        .card-custom:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,.15);
-        }
-        .card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: #007bff;
-        }
-        .card-body p {
-            color: #6c757d;
-        }
-        .team-member {
+            margin-bottom: 1.5rem; /* Reverted margin */
             text-align: center;
-            margin-bottom: 2rem;
         }
-        .team-member img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #007bff;
+        .about-content p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
             margin-bottom: 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,.1);
+            text-align: left; /* Align paragraphs left */
         }
-        .team-member h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: #343a40;
-            margin-bottom: 0.2rem;
-        }
-        .team-member p {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
+
         .footer {
             background-color: #343a40;
             color: #adb5bd;
@@ -122,129 +89,63 @@
         .footer p {
             margin-bottom: 0;
         }
+        @media (max-width: 768px) {
+            .about-content h2 { /* Adjusted for smaller screens */
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .about-content h2 { /* Further adjusted for very small screens */
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-      <div class="container">
-        <a class="navbar-brand" href="/">Lethal Company</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'home'%}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'about'%}">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'faq'%}">FAQ</a>
-            </li>
-          </ul>
+    <nav class="navbar navbar-expand-lg py-3 navbar-custom">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home'%}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'about'%}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'faq'%}">Gifts</a>
+                    </li>
+
+                </ul>
+            </div>
+            <a class="navbar-brand" href="#">Only For Zia</a>
         </div>
-      </div>
     </nav>
 
-    <header class="page-header">
-        <div class="container">
-            <h1>About Our Company</h1>
-            <p class="lead">Discover our journey, mission, and the values that drive us.</p>
-        </div>
-    </header>
-
-    <main class="container py-5">
-
-        <section class="mb-5">
-            <div class="row align-items-center">
-                <div class="col-md-6 order-md-2">
-                    <img src="https://via.placeholder.com/600x400/f8f9fa/333333?text=Our+Mission+Image" class="img-fluid rounded shadow-sm mb-4 mb-md-0" alt="Our Mission">
-                </div>
-                <div class="col-md-6 order-md-1">
-                    <h2 class="section-heading text-center text-md-start">Our Mission</h2>
-                    <p class="lead">At My Company, our mission is to empower businesses and individuals through innovative solutions and unparalleled service.</p>
-                    <p>We are dedicated to building lasting relationships with our clients by consistently delivering high-quality products and services that exceed expectations. Our commitment to excellence, integrity, and continuous improvement guides everything we do.</p>
-                    <p>We believe in fostering a culture of collaboration, creativity, and customer-centricity, ensuring that every interaction is meaningful and every solution is impactful.</p>
-                </div>
-            </div>
+    <main class="container">
+        <section class="about-content">
+            <h2>for caca</h2>
+            <p>Dear Zia,</p>
+            <p>I am again apologizing, I did what I did knowing what you felt. You are right, a simple apology isn't enough, but I want us to be right again.</p>
+            <p>So, if you will allow me, let me start with this website. I will apologize as many times as it takes and do you right this time. I can't change what I did then, but I want to make amends. </p>
+            <p>
+You don't have to forgive me, but at least give this old boy a chance to try and make it up to you. I made this website just for you. I hope that you read what's in it; it contains poems, funny shit, memories, and other stuff.</p>
+            <p>With deepest regrets and love,</p>
+            <p>-bins</p>
         </section>
-
-        <hr class="my-5"> <section class="mb-5">
-            <h2 class="section-heading text-center">Our Story</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-custom">
-                        <div class="card-body">
-                            <h5 class="card-title">Founded with a Vision</h5>
-                            <p class="card-text">My Company was established in 20XX with a clear vision to revolutionize the industry by providing cutting-edge solutions that solve real-world problems.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-custom">
-                        <div class="card-body">
-                            <h5 class="card-title">Growth and Expansion</h5>
-                            <p class="card-text">Over the years, we've experienced significant growth, expanding our services and reaching new markets, all while maintaining our core values.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-custom">
-                        <div class="card-body">
-                            <h5 class="card-title">Looking to the Future</h5>
-                            <p class="card-text">Today, we continue to innovate and adapt, embracing new technologies and methodologies to ensure we remain at the forefront of our field.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="my-5">
-
-        <section class="mb-5">
-            <h2 class="section-heading text-center">Meet Our Team</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="team-member">
-                        <img src="https://via.placeholder.com/150/007bff/ffffff?text=John+D" alt="John Doe">
-                        <h4>John Doe</h4>
-                        <p>CEO & Founder</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="team-member">
-                        <img src="https://via.placeholder.com/150/007bff/ffffff?text=Jane+S" alt="Jane Smith">
-                        <h4>Jane Smith</h4>
-                        <p>Chief Operating Officer</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="team-member">
-                        <img src="https://via.placeholder.com/150/007bff/ffffff?text=Mike+W" alt="Michael Williams">
-                        <h4>Michael Williams</h4>
-                        <p>Lead Developer</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="team-member">
-                        <img src="https://via.placeholder.com/150/007bff/ffffff?text=Emily+C" alt="Emily Chen">
-                        <h4>Emily Chen</h4>
-                        <p>Marketing Director</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 My Company. All rights reserved.</p>
+            <p>&copy; 2025 ZiaBonita, All balls reserved.</p>
         </div>
     </footer>
 
-          <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

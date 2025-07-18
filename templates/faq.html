@@ -1,111 +1,195 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - My Company</title>
-    <link href="{%  static  'css/bootstrap.min.css'%}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <title>Gifts - Only For Zia</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter, Montserrat, Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: #333;
-            background-color: #f8f9fa;
+            background-color: #e6f0e6; /* Sage green background for the entire body */
         }
-        .navbar {
+        /* Custom Navbar Styling (copied from main page) */
+        .navbar-custom {
+            background-color: #ffedcc; /* Original light orange */
             box-shadow: 0 2px 4px rgba(0,0,0,.05);
+            position: relative;
         }
-        .navbar-brand {
+        .navbar-custom .navbar-brand {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            color: #007bff !important;
+            color: #ff8c00 !important; /* Original darker orange */
+            font-size: 1.8rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            white-space: nowrap;
         }
-        .nav-link {
+        .navbar-custom .nav-link {
             font-weight: 600;
             color: #555 !important;
             transition: color 0.3s ease;
         }
-        .nav-link.active, .nav-link:hover {
-            color: #007bff !important;
+        .navbar-custom .nav-link.active, .navbar-custom .nav-link:hover {
+            color: #ff8c00 !important; /* Original darker orange */
+        }
+        @media (max-width: 991.98px) {
+            .navbar-custom .navbar-brand {
+                position: static;
+                transform: none;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .navbar-custom .navbar-collapse {
+                text-align: center;
+            }
         }
 
-        /* Page specific styles */
-        .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1500x400/27ae60/ffffff?text=Got+Questions%3F') no-repeat center center; /* Replace with your image */
-            background-size: cover;
-            color: white;
-            padding: 5rem 0;
-            text-align: center;
+        /* Gifts Page specific styles */
+        .gifts-container {
+            background-color: #ffedcc; /* Original light orange/pink */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 3rem;
             margin-bottom: 3rem;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            overflow: hidden;
+            padding: 2rem;
+            color: #333;
         }
-        .page-header h1 {
+        .gifts-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .gifts-header h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #ff8c00; /* Original darker orange */
+            /* Added to remove underline from the h1 when it's a link */
+            text-decoration: none;
         }
-        .section-heading {
+        /* Ensure the link itself doesn't have an underline */
+        .gifts-header a {
+            text-decoration: none;
+        }
+        /* Styles for individual gift items */
+        .gift-item {
+            background-color: #fcf4e6; /* Original very light orange */
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+        .gift-item h3 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: #343a40;
-            margin-bottom: 2.5rem;
-            position: relative;
-            padding-bottom: 10px;
+            color: #ff8c00; /* Original darker orange */
+            margin-bottom: 1rem;
         }
-        .section-heading::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: #007bff;
-            border-radius: 5px;
+        .gifts-image-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .gifts-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+        .gifts-text-content {
+            flex: 1;
+            padding: 1rem;
+        }
+        .gifts-text-content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        .gifts-text-content ul li {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .gifts-text-content strong {
+            color: #ff8c00; /* Original darker orange */
+        }
+        .gifts-text-content .note {
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 1.5rem;
+        }
+        .made-by {
+            margin-top: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: #555;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .made-by span {
+            font-weight: 600;
+            color: #ff8c00; /* Original darker orange */
+        }
+        .social-icons {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .social-icons a {
+            color: #ff8c00; /* Original darker orange */
+            font-size: 1.8rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .social-icons a:hover {
+            transform: scale(1.1);
+            color: #cc6600; /* Original darker orange on hover */
+            text-shadow: 0 0 5px rgba(255, 140, 0, 0.5); /* Original subtle glow with orange */
         }
 
-        .accordion-item {
-            border: 1px solid #dee2e6; /* Light border for each item */
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            overflow: hidden; /* Ensures rounded corners apply to content */
-            box-shadow: 0 2px 5px rgba(0,0,0,.05); /* Subtle shadow */
-            transition: box-shadow 0.3s ease;
+        /* New styles for the Moments Gallery */
+        .moments-gallery {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px dashed rgba(0,0,0,0.1);
         }
-        .accordion-item:hover {
-            box-shadow: 0 4px 10px rgba(0,0,0,.1);
-        }
-        .accordion-button {
-            background-color: white;
-            color: #343a40;
+        .moments-gallery h2 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1.15rem;
-            padding: 1.25rem 1.5rem;
-            border-radius: 8px; /* For top button */
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff8c00; /* Original darker orange */
+            text-align: center;
+            margin-bottom: 2rem;
         }
-        .accordion-button:not(.collapsed) {
-            background-color: #007bff; /* Blue when open */
-            color: white;
-            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        .gallery-thumbnail {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
         }
-        .accordion-button:focus {
-            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Blue focus ring */
-            border-color: #007bff;
+        .gallery-thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-        .accordion-body {
-            padding: 1.5rem;
-            border-top: 1px solid #dee2e6;
-            color: #6c757d;
-        }
+
         .footer {
-            background-color: #343a40;
+            background-color: #343a40; /* Keeping dark footer for contrast */
             color: #adb5bd;
             padding: 2.5rem 0;
             text-align: center;
@@ -119,124 +203,132 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-      <div class="container">
-        <a class="navbar-brand" href="/">Lethal Company</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'home'%}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about'%}">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'faq'%}">FAQ</a>
-            </li>
-          </ul>
+    <nav class="navbar navbar-expand-lg py-3 navbar-custom">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home'%}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about'%}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'faq'%}">Gifts</a>
+                    </li>
+
+                </ul>
+            </div>
+            <a class="navbar-brand" href="#">Only For Zia</a>
         </div>
-      </div>
     </nav>
 
-    <header class="page-header">
-        <div class="container">
-            <h1>Frequently Asked Questions</h1>
-            <p class="lead">Find answers to common questions about our services and policies.</p>
-        </div>
-    </header>
+    <main class="container">
+        <section class="gifts-container">
+            <div class="gifts-header">
+                <a href="https://gifft.me/o/l/4h2gsb6fk6et4ut5trgks6xe"><h1>SECRET GIFTS &#127873;</h1></a>
+            </div>
 
-    <main class="container py-5">
-        <section class="mb-5">
-            <h2 class="section-heading text-center">General Questions</h2>
-            <div class="accordion" id="generalFaqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            What services does My Company offer?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#generalFaqAccordion">
-                        <div class="accordion-body">
-                            My Company specializes in providing [mention your primary services, e.g., web development, digital marketing, consulting, product sales]. We offer tailored solutions designed to meet the unique needs of our clients. For a detailed list, please visit our <a href="/services">Services page</a>.
+            <!-- Main Gift Introduction Section (can be considered Gift Item 1) -->
+            <div class="gift-item row align-items-center">
+                <div class="col-md-6 text-center">
+                    <div class="gifts-image-container">
+                        <a href="https://docs.google.com/presentation/d/1zjTK8NSuXbK1GDeUhdHsE-vrbve6h8Z9/edit?usp=sharing&ouid=102142214227234594795&rtpof=true&sd=true"> <img src="https://cdn.discordapp.com/attachments/1118514819709018133/1394326743631790080/Screenshot_20230201_100629.jpg?ex=68766779&is=687515f9&hm=ec3b4eff894f9c1aef2afe010d5e629117de99ae1dcc99875ae05e04f7b9b650&" alt="First Digital Art Gift" class="gifts-image"></a>
+
+                        <div class="made-by">
+                            made by : <span>bins</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            How can I get started with your services?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#generalFaqAccordion">
-                        <div class="accordion-body">
-                            Getting started is easy! Simply fill out the contact form on our <a href="/contact">Contact Us page</a>, or call us directly at [Your Phone Number]. Our team will get back to you within 24 hours to discuss your needs.
-                        </div>
-                    </div>
-                </div>
-
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        What is your pricing model?
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#generalFaqAccordion">
-                    <div class="accordion-body">
-                        Our pricing varies depending on the scope and complexity of the project. We offer customized quotes after an initial consultation to ensure our services align perfectly with your budget and requirements. Please <a href="/contact">contact us</a> for a detailed estimate.
-                    </div>
-                </div>
-
-                </div>
-        </section>
-
-        <hr class="my-5">
-
-        <section class="mb-5">
-            <h2 class="section-heading text-center">Technical Questions</h2>
-            <div class="accordion" id="technicalFaqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTechOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTechOne" aria-expanded="false" aria-controls="collapseTechOne">
-                            Do you provide ongoing support after project completion?
-                        </button>
-                    </h2>
-                    <div id="collapseTechOne" class="accordion-collapse collapse" aria-labelledby="headingTechOne" data-bs-parent="#technicalFaqAccordion">
-                        <div class="accordion-body">
-                            Yes, we offer various support packages designed to ensure the continued smooth operation of your project. This can include maintenance, updates, and troubleshooting. Details can be discussed during project finalization.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTechTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTechTwo" aria-expanded="false" aria-controls="collapseTechTwo">
-                            What technologies do you specialize in?
-                        </button>
-                    </h2>
-                    <div id="collapseTechTwo" class="accordion-collapse collapse" aria-labelledby="headingTechTwo" data-bs-parent="#technicalFaqAccordion">
-                        <div class="accordion-body">
-                            Our team is proficient in a wide range of modern technologies, including [list key technologies, e.g., Python, Flask, Django, React, Vue.js, AWS, Docker]. We continuously update our skills to leverage the best tools for your project.
-                        </div>
+                <div class="col-md-6">
+                    <div class="gifts-text-content">
+                        <h3>Welcome to Your Secret Gift Vault!</h3>
+                        <ul>
+                            <li> This section is dedicated to be where 💖 </li>
+                            <li> <strong>all the gifts</strong> I've made you will be placed 🎁</li>
+                            <li> There are <strong>secret buttons</strong> in this section 🤫</li>
+                            <li> Please look for them! 🔍</li>
+                           <li>Each one unlocks a special memory or surprise.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="text-center py-4">
-            <p class="lead">Still have questions? Feel free to <a href="/contact">contact us directly</a>!</p>
-        </section>
+            <hr class="my-5"> <!-- Separator between sections -->
 
+            <!-- NEW: Another Gift Item Example -->
+            <div class="gift-item row align-items-center flex-md-row-reverse">
+                <div class="col-md-6 text-center">
+                    <div class="gifts-image-container">
+                        <!-- Placeholder image for a second gift -->
+                        <img src="https://media.discordapp.net/attachments/1118514754726666250/1394677079718760449/typeshit.png?ex=6877adbf&is=68765c3f&hm=601af3d3f1f46e1ec1b87e82e20a99387950c3afb2c5674580e854861d4e8933&=&format=webp&quality=lossless&width=1522&height=856" alt="Placeholder for second gift" class="gifts-image">
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="gifts-text-content">
+                        <h3>📸 Remember these times? </h3>
+                        <ul>
+                            <li>This gift is a collection of photos from our adventures together!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-5"> <!-- Separator between sections -->
+
+            <!-- NEW: Moments Gallery Section -->
+            <div class="moments-gallery">
+                <h2>More Moments!</h2>
+                <p class="text-center text-muted mb-4">A collection of random happy memories and behind-the-scenes glimpses.</p>
+                <div class="row g-4">
+                    <!-- Gallery Item 1 -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="https://drive.google.com/file/d/1A5-y_jHQfWdYLGskFzE24fApkpNRmMq9/view?usp=sharing"><img src="https://media.discordapp.net/attachments/1118514754726666250/1394672865563119696/image.png?ex=6877a9d2&is=68765852&hm=dbc2e0be6b5383ce8a7f2596e4566d7f4188482223e528215e39ffa521991473&=&format=webp&quality=lossless" alt="Sweet Moment 1" class="gallery-thumbnail"></a>
+
+                    </div>
+                    <!-- Gallery Item 2 -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <img src="https://media.discordapp.net/attachments/1118514819709018133/1394680998192480367/20220501_205327.jpg?ex=6877b165&is=68765fe5&hm=205ed8082eb23b089cc58989345829bd711f9b7a9ac23b4669f42576014a7826&=&format=webp&width=1809&height=856" alt="Sweet Moment 2" class="gallery-thumbnail">
+                    </div>
+                    <!-- Gallery Item 3 -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <img src="https://placehold.co/300x200/FFDDC1/FF8C00?text=Moment+3" alt="Sweet Moment 3" class="gallery-thumbnail">
+                    </div>
+                    <!-- Gallery Item 4 -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <img src="https://placehold.co/300x200/FFDDC1/FF8C00?text=Moment+4" alt="Sweet Moment 4" class="gallery-thumbnail">
+                    </div>
+                    <!-- Add more gallery items as needed -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <img src="https://placehold.co/300x200/FFDDC1/FF8C00?text=Moment+5" alt="Sweet Moment 5" class="gallery-thumbnail">
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <img src="https://placehold.co/300x200/FFDDC1/FF8C00?text=Moment+6" alt="Sweet Moment 6" class="gallery-thumbnail">
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://youtu.be/73otILMGkPY" aria-label="Cat">&#128008;</a> <!-- Cat emoji -->
+                <a href="#" aria-label="Hamburger">&#127828;</a> <!-- Hamburger emoji -->
+                <a href="#" aria-label="French Fries">&#127839;</a> <!-- French Fries emoji -->
+                <a href="#" aria-label="Fried Chicken">&#127837;</a> <!-- Fried Chicken emoji -->
+            </div>
+            <p style="text-align: center; font-size: 0.8rem; color: #6c757d; margin-top: 1rem;">in total there are 18 secrets buttons leading to various things, like ur age</p>
+        </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 My Company. All rights reserved.</p>
+            <p>&copy; 2025 ZiaBonita, All balls reserved.</p>
         </div>
     </footer>
 
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
