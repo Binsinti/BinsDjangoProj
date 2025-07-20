@@ -1,196 +1,109 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gifts - Only For Zia</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}">
+    <title>Only For Zia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            color: #333;
-            background-color: #e6f0e6; /* Sage green background for the entire body */
+            font-family: 'Inter', sans-serif; /* Using Inter as the primary font */
+            color: #333; /* Softer default text color */
+            background-color: #e6f0e6; /* Changed to sage green */
         }
-        /* Custom Navbar Styling (copied from main page) */
+        /* Custom Navbar Styling */
         .navbar-custom {
-            background-color: #ffedcc; /* Original light orange */
-            box-shadow: 0 2px 4px rgba(0,0,0,.05);
-            position: relative;
+            background-color: #ffedcc; /* Light orange background for the navbar */
+            box-shadow: 0 2px 4px rgba(0,0,0,.05); /* Subtle shadow for depth */
+            position: relative; /* Needed for absolute positioning of brand */
         }
         .navbar-custom .navbar-brand {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            color: #ff8c00 !important; /* Original darker orange */
-            font-size: 1.8rem;
-            position: absolute;
+            color: #ff8c00 !important; /* Darker orange for brand text */
+            font-size: 1.8rem; /* Larger brand text */
+            position: absolute; /* Position absolutely to center */
             left: 50%;
             transform: translateX(-50%);
-            z-index: 100;
-            white-space: nowrap;
+            z-index: 100; /* Ensure brand is above other elements */
+            white-space: nowrap; /* Prevent wrapping on smaller screens */
         }
         .navbar-custom .nav-link {
             font-weight: 600;
-            color: #555 !important;
+            color: #555 !important; /* Slightly darker link color */
             transition: color 0.3s ease;
         }
         .navbar-custom .nav-link.active, .navbar-custom .nav-link:hover {
-            color: #ff8c00 !important; /* Original darker orange */
+            color: #ff8c00 !important; /* Highlight color for active/hover */
         }
-        @media (max-width: 991.98px) {
+        /* Adjust toggler for small screens */
+        .navbar-custom .navbar-toggler {
+            margin-left: 1rem; /* Push toggler slightly from left edge */
+            z-index: 101; /* Ensure toggler is clickable */
+        }
+        /* Adjust brand positioning on smaller screens if needed */
+        @media (max-width: 991.98px) { /* Bootstrap's lg breakpoint */
             .navbar-custom .navbar-brand {
-                position: static;
+                position: static; /* Reset positioning for smaller screens */
                 transform: none;
-                margin-left: auto;
+                margin-left: auto; /* Center with flexbox if needed */
                 margin-right: auto;
             }
             .navbar-custom .navbar-collapse {
-                text-align: center;
+                text-align: center; /* Center nav links in collapsed state */
             }
         }
 
-        /* Gifts Page specific styles */
-        .gifts-container {
-            background-color: #ffedcc; /* Original light orange/pink */
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            color: #333;
-        }
-        .gifts-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-        .gifts-header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #ff8c00; /* Original darker orange */
-            /* Added to remove underline from the h1 when it's a link */
-            text-decoration: none;
-        }
-        /* Ensure the link itself doesn't have an underline */
-        .gifts-header a {
-            text-decoration: none;
-        }
-        /* Styles for individual gift items */
-        .gift-item {
-            background-color: #fcf4e6; /* Original very light orange */
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            margin-bottom: 3rem;
-        }
-        .gift-item h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: #ff8c00; /* Original darker orange */
-            margin-bottom: 1rem;
-        }
-        .gifts-image-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-        .gifts-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            margin-bottom: 1rem;
-        }
-        .gifts-text-content {
-            flex: 1;
-            padding: 1rem;
-        }
-        .gifts-text-content ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 2rem;
-        }
-        .gifts-text-content ul li {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-            color: #555;
-        }
-        .gifts-text-content strong {
-            color: #ff8c00; /* Original darker orange */
-        }
-        .gifts-text-content .note {
-            font-style: italic;
-            color: #6c757d;
-            margin-top: 1.5rem;
-        }
-        .made-by {
-            margin-top: 1rem;
-            font-family: 'Inter', sans-serif;
-            color: #555;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        .made-by span {
-            font-weight: 600;
-            color: #ff8c00; /* Original darker orange */
-        }
-        .social-icons {
-            margin-top: 2rem;
-            text-align: center;
-        }
-        .social-icons a {
-            color: #ff8c00; /* Original darker orange */
-            font-size: 1.8rem;
-            margin: 0 10px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .social-icons a:hover {
-            transform: scale(1.1);
-            color: #cc6600; /* Original darker orange on hover */
-            text-shadow: 0 0 5px rgba(255, 140, 0, 0.5); /* Original subtle glow with orange */
-        }
 
-        /* New styles for the Moments Gallery */
-        .moments-gallery {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px dashed rgba(0,0,0,0.1);
-        }
-        .moments-gallery h2 {
+        .section-heading {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
             font-weight: 700;
-            color: #ff8c00; /* Original darker orange */
+            color: #343a40;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+        .feature-box {
             text-align: center;
-            margin-bottom: 2rem;
-        }
-        .gallery-thumbnail {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
+            padding: 2rem;
+            background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,.08); /* More prominent shadow for features */
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .gallery-thumbnail:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        .feature-box:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 8px 16px rgba(0,0,0,.15);
+        }
+        .feature-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #007bff;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .feature-box p {
+            color: #6c757d;
         }
 
         .footer {
-            background-color: #343a40; /* Keeping dark footer for contrast */
-            color: #adb5bd;
+            background-color: #343a40; /* Darker footer */
+            color: #adb5bd; /* Lighter text for contrast */
             padding: 2.5rem 0;
             text-align: center;
             margin-top: 5rem;
@@ -199,9 +112,156 @@
         .footer p {
             margin-bottom: 0;
         }
-        a {
-             text-decoration: none;
-            color: inherit !important;
+
+        /* Countdown specific styles */
+        .countdown-container {
+            background-color: #ffedcc; /* Light orange background */
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .countdown-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff8c00; /* Darker orange */
+            margin-bottom: 0.5rem; /* Reduced margin to bring subtitle closer */
+        }
+        .countdown-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem; /* Smaller font size for the subtitle */
+            color: #6c757d; /* Slightly muted color for subtitle */
+            margin-bottom: 1.5rem; /* Space below subtitle before countdown grid */
+        }
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        .countdown-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem 1rem;
+            min-width: 120px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .countdown-value {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ff8c00;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .countdown-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cat-emoji { /* Added a class for the emoji for potential styling */
+            font-size: 3rem; /* Adjust size as needed */
+            margin-top: 1rem;
+        }
+
+        /* Profile image and name section styling */
+        .profile-section {
+            display: flex;
+            flex-direction: column; /* Stack image and text on small screens */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+        .profile-image-container {
+            width: 150px; /* Set a fixed size for the container */
+            height: 150px;
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden; /* Hide parts of the image outside the circle */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+            margin-bottom: 1.5rem; /* Space between image and name on stacked layout */
+        }
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the container without distortion */
+            display: block; /* Remove extra space below image */
+        }
+        .profile-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 0; /* Remove default heading margin */
+        }
+        .profile-subtext { /* New style for the subtext */
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem; /* Adjust size as needed */
+            color: #6c757d; /* Muted color */
+            margin-top: 0.5rem; /* Space between name and subtext */
+        }
+
+        @media (min-width: 768px) { /* On medium screens and up, arrange side-by-side */
+            .profile-section {
+                flex-direction: row; /* Arrange image and text in a row */
+                gap: 2rem; /* Space between image and text */
+            }
+            .profile-image-container {
+                margin-bottom: 0; /* Remove bottom margin when in row layout */
+            }
+        }
+
+        /* Responsive adjustments for countdown */
+        @media (max-width: 768px) {
+            .countdown-item {
+                min-width: 100px;
+                padding: 1rem 0.8rem;
+            }
+            .countdown-value {
+                font-size: 2.2rem;
+            }
+            .countdown-label {
+                font-size: 0.8rem;
+            }
+            .countdown-title {
+                font-size: 2rem;
+            }
+            .countdown-subtitle {
+                font-size: 1rem;
+            }
+            .profile-name {
+                font-size: 2.8rem; /* Adjust for smaller screens */
+            }
+            .profile-subtext {
+                font-size: 1.2rem; /* Adjust for smaller screens */
+            }
+        }
+        @media (max-width: 576px) {
+            .countdown-grid {
+                gap: 1rem;
+            }
+            .countdown-item {
+                min-width: 80px;
+                padding: 0.8rem 0.5rem;
+            }
+            .countdown-value {
+                font-size: 1.8rem;
+            }
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+
+
         }
     </style>
 </head>
@@ -212,108 +272,122 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home'%}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about'%}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'faq'%}">Gifts</a>
+                        <a class="nav-link" href="{% url 'faq'%}">Gifts</a>
                     </li>
 
                 </ul>
             </div>
+
             <a class="navbar-brand" href="#">Only For Zia</a>
         </div>
     </nav>
 
     <main class="container">
-        <section class="gifts-container">
-            <div class="gifts-header">
-                <a href="https://gifft.me/o/l/4h2gsb6fk6et4ut5trgks6xe" target="_blank"><h1>SECRET GIFTS 🎁</h1></a>
+        <section class="profile-section">
+            <div class="profile-image-container">
+           <img src="{% static 'profile.jpg' %}" alt="Angelika Tibalao Profile" class="profile-image">
             </div>
-
-            <div class="gift-item row align-items-center">
-                <div class="col-md-6 text-center">
-                    <div class="gifts-image-container">
-                        <a href="https://docs.google.com/presentation/d/1zjTK8NSuXbK1GDeUhdHsE-vrbve6h8Z9/edit?usp=sharing&ouid=102142214227234594795&rtpof=true&sd=true" target="_blank"> <img src="{% static 'gift1.jpg' %}" alt="First Digital Art Gift" class="gifts-image"></a>
-
-                        <div class="made-by">
-                            made by : <a href="https://drive.google.com/file/d/19hZaJwSkUdX7lQyR7pJNEYf65DJ73lg3/view?usp=sharing" target="_blank"><span>bins</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="gifts-text-content">
-                        <h3>Welcome to Your Secret Gift Vault!</h3>
-                        <ul>
-                            <li> This page is dedicated to be where <a href="https://gifft.me/o/e/674qlcikggigelrgz6jrj746" target="_blank">💖</a></li>
-                            <li> <strong>all the gifts</strong> I've made you will be placed   <a href="https://gifft.me/o/e/674qlcikggigelrgz6jrj746" target="_blank">🎁</a></li>
-                            <li> There are secret <strong> <a href="https://gifft.me/o/e/674qlcikggigelrgz6jrj746 " target="_blank">buttons</a></strong> in this section  <a href="https://www.youtube.com/watch?v=5wOXc03RwVA" target="_blank">🤫</a></li>
-                            <li> Please look for them! <a href="https://gifft.me/o/l/v72zyexdvc5qj6zw1dp8ih4k " target="_blank">🔍</a></li>
-                           <li>Each one unlocks a special memory or surprise.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="my-5"> <div class="gift-item row align-items-center flex-md-row-reverse">
-                <div class="col-md-6 text-center">
-                    <div class="gifts-image-container">
-                        <img src="{% static 'typeshit.png' %}" alt="Placeholder for second gift" class="gifts-image">
-
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="gifts-text-content">
-                        <h3><a href="https://gifft.me/o/p/vangbjdfv4fs3ifvsn0bdnrd" target="_blank">📸</a> Remember these times? </h3>
-                        <ul>
-                            <li>This gift is a collection of photos from our adventures together!</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="my-5"> <div class="moments-gallery">
-                <h2>More Moments!</h2>
-                <p class="text-center text-muted mb-4">A collection of random happy memories and behind-the-scenes glimpses.</p>
-                <div class="row g-4">
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a href="https://drive.google.com/file/d/1A5-y_jHQfWdYLGskFzE24fApkpNRmMq9/view?usp=sharing" target="_blank"> <img src="{% static 'moment1.png' %}" alt="Sweet Moment 1" class="gallery-thumbnail"> </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a href=https://gifft.me/o/3d/1xj3nswwnxjgyalb0epjovlq target="_blank"> <img src="{% static 'moment7.png' %}" alt="Sweet Moment 2" class="gallery-thumbnail"> </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a href="https://gifft.me/o/e/48q8gbiilz2fnrj42bxyhzqz" target="_blank"> <img src="{% static 'moment3.png' %}" alt="Sweet Moment 3" class="gallery-thumbnail"> </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a href="https://gifft.me/o/e/4u2hogy4tmmavp7yy32wypki" target="_blank"> <img src="{% static 'moment4.png' %}" alt="Sweet Moment 4" class="gallery-thumbnail"> </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a href="https://gifft.me/o/p/28aavfns12x813045r3cpr4p" target="_blank"> <img src="{% static 'moment5.png' %}" alt="Sweet Moment 5" class="gallery-thumbnail"> </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                         <a href="https://gifft.me/o/s/b1zr3d8h2yz5vlz67udwt2vy" target="_blank"> <img src="{% static 'moment6.png' %}" alt="Sweet Moment 6" class="gallery-thumbnail"> </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="social-icons">
-                <a href="https://youtu.be/73otILMGkPY" aria-label="Cat" target="_blank">🐈</a> <a href="https://open.spotify.com/playlist/3T0nSyCuhGwMKZ5QPUy8cn?si=Q-vSZyiCRd65H-wj4z2xiw" aria-label="Music" target="_blank">🎼</a> <a href=https://www.youtube.com/watch?v=8Pc0AEbfnBM#" aria-label="French Fries" target="_blank">🍟</a> <a href="https://main.d3uodgsjhzr0ch.amplifyapp.com/" aria-label="Fried Chicken" target="_blank">🍝</a> </div>
-            <p style="text-align: center; font-size: 0.8rem; color: #6c757d; margin-top: 1rem;">in total there are 18 secrets buttons leading to various things, like ur age</p>
+            <div>
+                <h1 class="profile-name">Angelika Tibalao</h1>
+                <p class="profile-subtext">the best cousin/apo ever</p> </div>
         </section>
+
+        <section class="countdown-container">
+            <h2 class="countdown-title">Time</h2>
+            <p class="countdown-subtitle">since the day we first met</p>
+            <div class="countdown-grid" id="timeTogetherCountdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="years">00</div>
+                    <div class="countdown-label">Years</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="months">00</div>
+                    <div class="countdown-label">Months</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+             </div>
+            <div class="d-flex justify-content-center mt-4">
+                <span class="cat-emoji">🐈</span>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>© 2025 ZiaBonita, All <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" aria-label="balls" target="_blank">balls</a> reserved -eventhishassecrets.</p>
+            <p>&copy; 2025 ZiaBonita, All balls reserved.</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // JavaScript for the "Time Together" countdown
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set your specific start date here: April 29, 2022, 12:30 PM
+            const startDate = new Date('2022-04-29T12:30:00');
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = now.getTime() - startDate.getTime(); // Difference in milliseconds
+
+                // Calculate time components
+                // Using approximate values for months and years for simplicity in display.
+                // For precise calendar-based calculations, a dedicated library would be needed.
+                const seconds = Math.floor(diff / 1000);
+                const minutes = Math.floor(seconds / 60);
+                const hours = Math.floor(minutes / 60);
+                const days = Math.floor(hours / 24);
+
+                const years = Math.floor(days / 365.25); // Approximate years, accounting for leap years
+                const remainingDaysAfterYears = days % 365.25;
+                const months = Math.floor(remainingDaysAfterYears / 30.44); // Approximate months (average days)
+
+                const displayDays = Math.floor(days % 30.44); // Days remaining after months
+                const displayHours = Math.floor(hours % 24);
+                const displayMinutes = Math.floor(minutes % 60);
+                const displaySeconds = Math.floor(seconds % 60);
+
+                // Update the DOM elements, padding with leading zeros if necessary
+                document.getElementById('years').textContent = String(years).padStart(2, '0');
+                document.getElementById('months').textContent = String(months).padStart(2, '0');
+                document.getElementById('days').textContent = String(displayDays).padStart(2, '0');
+                document.getElementById('hours').textContent = String(displayHours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(displayMinutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(displaySeconds).padStart(2, '0');
+            }
+
+            // Update the countdown every second
+            setInterval(updateCountdown, 1000);
+
+            // Initial call to display countdown immediately upon page load
+            updateCountdown();
+        });
+    </script>
 </body>
 </html>
