@@ -1,12 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gifts - Only For Zia</title>
-    <!-- Bootstrap CSS from CDN -->
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts: Inter, Montserrat, Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -199,6 +199,10 @@
         .footer p {
             margin-bottom: 0;
         }
+        a {
+             text-decoration: none;
+            color: inherit !important;
+        }
     </style>
 </head>
 <body>
@@ -211,35 +215,34 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home'%}">Home</a>
+                        <a class="nav-link" href="{% url 'home'%}" target="_blank">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about'%}">About</a>
+                        <a class="nav-link" href="{% url 'about'%}" target="_blank">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'faq'%}">Gifts</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'faq'%}" target="_blank">Gifts</a>
                     </li>
 
                 </ul>
             </div>
-            <a class="navbar-brand" href="#">Only For Zia</a>
+            <a class="navbar-brand" href="{% url 'home' %}" target="_blank">Only For Zia</a>
         </div>
     </nav>
 
     <main class="container">
         <section class="gifts-container">
             <div class="gifts-header">
-                <a href="https://gifft.me/o/l/4h2gsb6fk6et4ut5trgks6xe"><h1>SECRET GIFTS &#127873;</h1></a>
+                <a href="https://gifft.me/o/l/4h2gsb6fk6et4ut5trgks6xe" target="_blank"><h1>SECRET GIFTS 🎁</h1></a>
             </div>
 
-            <!-- Main Gift Introduction Section (can be considered Gift Item 1) -->
             <div class="gift-item row align-items-center">
                 <div class="col-md-6 text-center">
                     <div class="gifts-image-container">
-                        <a href="https://docs.google.com/presentation/d/1zjTK8NSuXbK1GDeUhdHsE-vrbve6h8Z9/edit?usp=sharing&ouid=102142214227234594795&rtpof=true&sd=true"> <img src="https://cdn.discordapp.com/attachments/1118514819709018133/1394326743631790080/Screenshot_20230201_100629.jpg?ex=68766779&is=687515f9&hm=ec3b4eff894f9c1aef2afe010d5e629117de99ae1dcc99875ae05e04f7b9b650&" alt="First Digital Art Gift" class="gifts-image"></a>
+                        <a href="https://docs.google.com/presentation/d/1zjTK8NSuXbK1GDeUhdHsE-vrbve6h8Z9/edit?usp=sharing&ouid=102142214227234594795&rtpof=true&sd=true" target="_blank"> <img src="{% static 'gift1.jpg' %}" alt="First Digital Art Gift" class="gifts-image"></a>
 
                         <div class="made-by">
-                            made by : <span>bins</span>
+                            made by : <a href="https://drive.google.com/file/d/19hZaJwSkUdX7lQyR7pJNEYf65DJ73lg3/view?usp=sharing" target="_blank"><span>bins</span></a>
                         </div>
                     </div>
                 </div>
@@ -247,30 +250,26 @@
                     <div class="gifts-text-content">
                         <h3>Welcome to Your Secret Gift Vault!</h3>
                         <ul>
-                            <li> This section is dedicated to be where 💖 </li>
-                            <li> <strong>all the gifts</strong> I've made you will be placed 🎁</li>
-                            <li> There are <strong>secret buttons</strong> in this section 🤫</li>
-                            <li> Please look for them! 🔍</li>
+                            <li> This page is dedicated to be where <a href="https://gifft.me/o/e/674qlcikggigelrgz6jrj746" target="_blank">💖</a></li>
+                            <li> <strong>all the gifts</strong> I've made you will be placed   <a href="https://gifft.me/o/e/674qlcikggigelrgz6jrj746" target="_blank">🎁</a></li>
+                            <li> There are secret <strong> <a href="https://gifft.me/o/p/vangbjdfv4fs3ifvsn0bdnrd" target="_blank">buttons</a></strong> in this section  <a href="https://www.youtube.com/watch?v=5wOXc03RwVA" target="_blank">🤫</a></li>
+                            <li> Please look for them! <a href="https://gifft.me/o/l/v72zyexdvc5qj6zw1dp8ih4k " target="_blank">🔍</a></li>
                            <li>Each one unlocks a special memory or surprise.</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <hr class="my-5"> <!-- Separator between sections -->
-
-            <!-- NEW: Another Gift Item Example -->
-            <div class="gift-item row align-items-center flex-md-row-reverse">
+            <hr class="my-5"> <div class="gift-item row align-items-center flex-md-row-reverse">
                 <div class="col-md-6 text-center">
                     <div class="gifts-image-container">
-                        <!-- Placeholder image for a second gift -->
-                        <img src="https://media.discordapp.net/attachments/1118514754726666250/1394677079718760449/typeshit.png?ex=6877adbf&is=68765c3f&hm=601af3d3f1f46e1ec1b87e82e20a99387950c3afb2c5674580e854861d4e8933&=&format=webp&quality=lossless&width=1522&height=856" alt="Placeholder for second gift" class="gifts-image">
+                        <img src="{% static 'typeshit.png' %}" alt="Placeholder for second gift" class="gifts-image">
 
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="gifts-text-content">
-                        <h3>📸 Remember these times? </h3>
+                        <h3><a href="https://gifft.me/o/e/674qlcikggigelrgz6jrj746" target="_blank">📸</a> Remember these times? </h3>
                         <ul>
                             <li>This gift is a collection of photos from our adventures together!</li>
                         </ul>
@@ -278,57 +277,43 @@
                 </div>
             </div>
 
-            <hr class="my-5"> <!-- Separator between sections -->
-
-            <!-- NEW: Moments Gallery Section -->
-            <div class="moments-gallery">
+            <hr class="my-5"> <div class="moments-gallery">
                 <h2>More Moments!</h2>
                 <p class="text-center text-muted mb-4">A collection of random happy memories and behind-the-scenes glimpses.</p>
                 <div class="row g-4">
-                    <!-- Gallery Item 1 -->
                     <div class="col-6 col-md-4 col-lg-3">
-                        <a href="https://drive.google.com/file/d/1A5-y_jHQfWdYLGskFzE24fApkpNRmMq9/view?usp=sharing"><img src="https://media.discordapp.net/attachments/1118514754726666250/1394672865563119696/image.png?ex=6877a9d2&is=68765852&hm=dbc2e0be6b5383ce8a7f2596e4566d7f4188482223e528215e39ffa521991473&=&format=webp&quality=lossless" alt="Sweet Moment 1" class="gallery-thumbnail"></a>
-
-                    </div>
-                    <!-- Gallery Item 2 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <img src="https://media.discordapp.net/attachments/1118514819709018133/1394680998192480367/20220501_205327.jpg?ex=6877b165&is=68765fe5&hm=205ed8082eb23b089cc58989345829bd711f9b7a9ac23b4669f42576014a7826&=&format=webp&width=1809&height=856" alt="Sweet Moment 2" class="gallery-thumbnail">
-                    </div>
-                    <!-- Gallery Item 3 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <img src="https://placehold.co/300x200/FFDDC1/FF8C00?text=Moment+3" alt="Sweet Moment 3" class="gallery-thumbnail">
-                    </div>
-                    <!-- Gallery Item 4 -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <img src="https://placehold.co/300x200/FFDDC1/FF8C00?text=Moment+4" alt="Sweet Moment 4" class="gallery-thumbnail">
-                    </div>
-                    <!-- Add more gallery items as needed -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <img src="https://placehold.co/300x200/FFDDC1/FF8C00?text=Moment+5" alt="Sweet Moment 5" class="gallery-thumbnail">
+                        <a href="https://drive.google.com/file/d/1A5-y_jHQfWdYLGskFzE24fApkpNRmMq9/view?usp=sharing" target="_blank"> <img src="{% static 'moment1.png' %}" alt="Sweet Moment 1" class="gallery-thumbnail"> </a>
                     </div>
                     <div class="col-6 col-md-4 col-lg-3">
-                        <img src="https://placehold.co/300x200/FFDDC1/FF8C00?text=Moment+6" alt="Sweet Moment 6" class="gallery-thumbnail">
+                        <a href=https://gifft.me/o/3d/1xj3nswwnxjgyalb0epjovlq target="_blank"> <img src="{% static 'moment7.png' %}" alt="Sweet Moment 2" class="gallery-thumbnail"> </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="https://gifft.me/o/e/48q8gbiilz2fnrj42bxyhzqz" target="_blank"> <img src="{% static 'moment3.png' %}" alt="Sweet Moment 3" class="gallery-thumbnail"> </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="https://gifft.me/o/e/4u2hogy4tmmavp7yy32wypki" target="_blank"> <img src="{% static 'moment4.png' %}" alt="Sweet Moment 4" class="gallery-thumbnail"> </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="https://gifft.me/o/p/28aavfns12x813045r3cpr4p" target="_blank"> <img src="{% static 'moment5.png' %}" alt="Sweet Moment 5" class="gallery-thumbnail"> </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                         <a href="https://gifft.me/o/s/b1zr3d8h2yz5vlz67udwt2vy" target="_blank"> <img src="{% static 'moment6.png' %}" alt="Sweet Moment 6" class="gallery-thumbnail"> </a>
                     </div>
                 </div>
             </div>
 
             <div class="social-icons">
-                <a href="https://youtu.be/73otILMGkPY" aria-label="Cat">&#128008;</a> <!-- Cat emoji -->
-                <a href="#" aria-label="Hamburger">&#127828;</a> <!-- Hamburger emoji -->
-                <a href="#" aria-label="French Fries">&#127839;</a> <!-- French Fries emoji -->
-                <a href="#" aria-label="Fried Chicken">&#127837;</a> <!-- Fried Chicken emoji -->
-            </div>
+                <a href="https://youtu.be/73otILMGkPY" aria-label="Cat" target="_blank">🐈</a> <a href="https://open.spotify.com/playlist/3T0nSyCuhGwMKZ5QPUy8cn?si=Q-vSZyiCRd65H-wj4z2xiw" aria-label="Music" target="_blank">🎼</a> <a href=https://www.youtube.com/watch?v=8Pc0AEbfnBM#" aria-label="French Fries" target="_blank">🍟</a> <a href="https://main.d3uodgsjhzr0ch.amplifyapp.com/" aria-label="Fried Chicken" target="_blank">🍝</a> </div>
             <p style="text-align: center; font-size: 0.8rem; color: #6c757d; margin-top: 1rem;">in total there are 18 secrets buttons leading to various things, like ur age</p>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 ZiaBonita, All balls reserved.</p>
+            <p>© 2025 ZiaBonita, All <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" aria-label="balls" target="_blank">balls</a> reserved -eventhishassecrets.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
